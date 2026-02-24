@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Applications</title>
+<link rel="stylesheet" href="MyApplication.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <aside class="sidebar">
+        <h2 class="logo">JobPortal</h2>
+        <ul>
+            <li><a href="candidate.html">Dashboard</a></li>
+            <li class="active">My Applications</li>
+            <li><a href="ViewProfile.html">Profile</a></li>
+            <li><a href="settings.html">Settings</a></li>
+            <li id="logout">Logout</li>
+        </ul>
+    </aside>
+
+    <main class="main">
+        <h1>My Applications</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Job Title</th>
+                    <th>Company</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody id="applicationsTable">
+                <!-- Data comes from backend -->
+            </tbody>
+        </table>
+    </main>
+
+</div>
+
+<script src="MyApplication.js"></script>
+</body>
+</html>

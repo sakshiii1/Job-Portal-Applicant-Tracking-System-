@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign in · TalentTrack ATS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ✅ Only required CSS -->
+  <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body class="auth-page">
+
+  <main class="auth-shell">
+
+    <!-- Left Info Section -->
+    <section>
+      <h1 class="auth-hero-title">
+        Welcome back to your hiring workspace
+      </h1>
+
+      <p class="auth-hero-subtitle">
+        Sign in to manage roles, review candidates, and keep every pipeline moving.
+      </p>
+
+      <div class="auth-hero-pills">
+        <span class="auth-hero-pill">JWT-secured</span>
+        <span class="auth-hero-pill">Spring Boot backend</span>
+        <span class="auth-hero-pill">Role-aware dashboards</span>
+      </div>
+    </section>
+
+    <!-- Login Form Section -->
+    <section>
+      <div class="auth-card">
+
+        <div class="auth-card-header">
+          <div class="auth-card-title">Sign in</div>
+          <span class="auth-card-badge">ATS access</span>
+        </div>
+
+        <form id="loginForm" class="auth-form" novalidate>
+
+          <div class="auth-field">
+            <label for="loginEmail" class="auth-label">Work email</label>
+            <input 
+              id="loginEmail" 
+              type="email" 
+              class="auth-input" 
+              autocomplete="email" 
+              required>
+          </div>
+
+          <div class="auth-field">
+            <label for="loginPassword" class="auth-label">Password</label>
+            <input 
+              id="loginPassword" 
+              type="password" 
+              class="auth-input" 
+              autocomplete="current-password" 
+              required>
+          </div>
+
+          <div class="auth-field">
+            <label for="loginRole" class="auth-label">Sign in as</label>
+            <select id="loginRole" class="auth-select" required>
+              <option value="">Select role</option>
+              <option value="ADMIN">Admin</option>
+              <option value="RECRUITER">Recruiter</option>
+              <option value="CANDIDATE">Candidate</option>
+            </select>
+          </div>
+
+          <div class="auth-footer">
+            <button id="loginSubmit" type="submit" class="auth-submit">
+              Sign in
+            </button>
+
+            <div class="auth-meta">
+              <span>
+                New here? 
+                <a href="registerPage.html" class="auth-link">
+                  Create an account
+                </a>
+              </span>
+
+              <a href="../index.html" class="auth-link">
+                Back to home
+              </a>
+            </div>
+          </div>
+
+          <div id="loginError" class="auth-alert error"></div>
+          <div id="loginSuccess" class="auth-alert success"></div>
+
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ✅ Correct JS paths -->
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/login.js"></script>
+
+</body>
+</html>

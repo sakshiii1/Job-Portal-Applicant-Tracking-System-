@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign up · TalentTrack ATS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- ✅ Correct CSS Paths -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../css/register.css">
+</head>
+
+<body class="register-page">
+  <main class="register-shell">
+    <section>
+      <h1 class="register-hero-title">Create your ATS space in a few seconds</h1>
+      <p class="register-hero-text">
+        Pick your role, invite teammates, and start tracking candidates with real-time visibility.
+      </p>
+      <div class="register-grid">
+        <div class="register-chip">Admins orchestrate access and governance</div>
+        <div class="register-chip">Recruiters move candidates through stages</div>
+        <div class="register-chip">Candidates track every application</div>
+        <div class="register-chip">Secure JWT flow against Spring Boot APIs</div>
+      </div>
+    </section>
+
+    <section>
+      <div class="register-card">
+        <div class="register-tabs">
+          <button type="button" class="register-tab active" data-role-tab="ADMIN">Admin</button>
+          <button type="button" class="register-tab" data-role-tab="RECRUITER">Recruiter</button>
+          <button type="button" class="register-tab" data-role-tab="CANDIDATE">Candidate</button>
+        </div>
+
+        <form id="registerForm" class="register-form" novalidate>
+          <div class="register-field">
+            <label for="registerFullName" class="register-label">Full name</label>
+            <input id="registerFullName" type="text" class="register-input" required>
+          </div>
+
+          <div class="register-field">
+            <label for="registerEmail" class="register-label">Work email</label>
+            <input id="registerEmail" type="email" class="register-input" required>
+          </div>
+
+          <div class="register-field">
+            <label for="registerPassword" class="register-label">Password</label>
+            <input id="registerPassword" type="password" class="register-input" required>
+          </div>
+
+          <div class="register-field">
+            <label for="registerRole" class="register-label">Register as</label>
+            <select id="registerRole" class="register-select" required>
+              <option value="">Select role</option>
+              <option value="ADMIN">Admin</option>
+              <option value="RECRUITER">Recruiter</option>
+              <option value="CANDIDATE">Candidate</option>
+            </select>
+          </div>
+
+          <div class="register-footer">
+            <button id="registerSubmit" type="submit" class="register-submit">
+              Create account
+            </button>
+
+            <div class="register-meta">
+              <span>
+                Already on TalentTrack?
+                <a href="loginPage.html" class="register-link">Sign in</a>
+              </span>
+              <a href="../index.html" class="register-link">Back to home</a>
+            </div>
+          </div>
+
+          <div id="registerError" class="register-alert error"></div>
+          <div id="registerSuccess" class="register-alert success"></div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ✅ Correct JS Order -->
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/register.js"></script>
+
+  <!-- Role Tabs Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      var tabs = document.querySelectorAll("[data-role-tab]");
+      var roleSelect = document.getElementById("registerRole");
+
+      tabs.forEach(function (tab) {
+        tab.addEventListener("click", function () {
+          var role = tab.getAttribute("data-role-tab");
+
+          tabs.forEach(function (t) {
+            t.classList.toggle("active", t === tab);
+          });
+
+          if (roleSelect) {
+            roleSelect.value = role;
+          }
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

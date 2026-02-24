@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard · TalentPulse ATS</title>
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0f0f1a;
+      min-height: 100vh;
+      padding: 20px;
+      color: #e1e5ee;
+    }
+
+    /* Main Container */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Header - Dark Glass */
+    .dashboard-header {
+      background: rgba(18, 18, 30, 0.95);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 20px 30px;
+      margin-bottom: 25px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header-left h1 {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 5px;
+      font-weight: 700;
+      background: linear-gradient(135deg, #818cf8, #c084fc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .header-left p {
+      color: #9ca3af;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .header-left p i {
+      color: #10b981;
+      font-size: 8px;
+    }
+
+    .header-actions {
+      display: flex;
+      gap: 12px;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      border: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .btn-outline {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #e1e5ee;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    }
+
+    /* Stats Grid - Dark Cards */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 25px;
+    }
+
+    .stat-card {
+      background: #1a1a2e;
+      border-radius: 20px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      transition: all 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      border-color: rgba(129, 140, 248, 0.2);
+    }
+
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .stat-icon.blue {
+      background: linear-gradient(135deg, #2563eb, #1e40af);
+      color: #93c5fd;
+    }
+
+    .stat-icon.purple {
+      background: linear-gradient(135deg, #7c3aed, #5b21b6);
+      color: #c4b5fd;
+    }
+
+    .stat-icon.green {
+      background: linear-gradient(135deg, #059669, #065f46);
+      color: #6ee7b7;
+    }
+
+    .stat-icon.orange {
+      background: linear-gradient(135deg, #d97706, #92400e);
+      color: #fcd34d;
+    }
+
+    .stat-info h3 {
+      font-size: 14px;
+      color: #9ca3af;
+      font-weight: 500;
+      margin-bottom: 5px;
+    }
+
+    .stat-info .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    /* Main Content Grid */
+    .content-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 25px;
+    }
+
+    /* Users Card - Dark */
+    .users-card {
+      background: #1a1a2e;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .card-header h2 {
+      font-size: 18px;
+      color: #fff;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-header h2 i {
+      color: #818cf8;
+    }
+
+    .badge {
+      background: rgba(129, 140, 248, 0.1);
+      color: #818cf8;
+      padding: 5px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      border: 1px solid rgba(129, 140, 248, 0.2);
+    }
+
+    .search-box {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .search-box input {
+      flex: 1;
+      padding: 12px 16px;
+      background: #26263b;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 12px;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      color: #fff;
+      transition: all 0.3s;
+    }
+
+    .search-box input:focus {
+      outline: none;
+      border-color: #818cf8;
+      background: #2d2d44;
+    }
+
+    .search-box input::placeholder {
+      color: #6b7280;
+    }
+
+    .search-box button {
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .search-box button:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    /* User List - Dark */
+    .user-list {
+      max-height: 500px;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+
+    .user-list::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .user-list::-webkit-scrollbar-track {
+      background: #26263b;
+      border-radius: 10px;
+    }
+
+    .user-list::-webkit-scrollbar-thumb {
+      background: #4f46e5;
+      border-radius: 10px;
+    }
+
+    .user-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s;
+      border-radius: 12px;
+    }
+
+    .user-item:hover {
+      background: #26263b;
+      transform: translateX(5px);
+    }
+
+    .user-avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 600;
+      font-size: 18px;
+      margin-right: 15px;
+      box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3);
+    }
+
+    .user-info {
+      flex: 1;
+    }
+
+    .user-info h4 {
+      font-size: 16px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .user-info .user-email {
+      font-size: 13px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .user-info .user-email i {
+      font-size: 12px;
+      color: #4b5563;
+    }
+
+    .role-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .role-badge.admin {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .role-badge.recruiter {
+      background: rgba(245, 158, 11, 0.1);
+      color: #fbbf24;
+      border: 1px solid rgba(245, 158, 11, 0.2);
+    }
+
+    .role-badge.candidate {
+      background: rgba(16, 185, 129, 0.1);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .user-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .user-actions button {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      border: none;
+      background: transparent;
+      color: #6b7280;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .user-actions button:hover {
+      background: #2d2d44;
+      color: #818cf8;
+    }
+
+    /* Activity Card - Dark */
+    .activity-card {
+      background: #1a1a2e;
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.03);
+    }
+
+    .activity-item {
+      display: flex;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .activity-item:last-child {
+      border-bottom: none;
+    }
+
+    .activity-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: #26263b;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #818cf8;
+    }
+
+    .activity-details h4 {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+
+    .activity-details p {
+      font-size: 12px;
+      color: #9ca3af;
+    }
+
+    .activity-time {
+      font-size: 11px;
+      color: #6b7280;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Loading States - Dark */
+    .loading {
+      text-align: center;
+      padding: 40px;
+      color: #9ca3af;
+    }
+
+    .loading i {
+      margin-right: 8px;
+      animation: spin 1s linear infinite;
+      color: #818cf8;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .error-box {
+      background: rgba(239, 68, 68, 0.1);
+      color: #f87171;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      .content-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .dashboard-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .search-box {
+        flex-direction: column;
+      }
+      
+      .user-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+      }
+      
+      .user-avatar {
+        margin-right: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="dashboard-container">
+    
+    <!-- Header -->
+    <div class="dashboard-header">
+      <div class="header-left">
+        <h1><i class="fas fa-crown" style="color: #fbbf24; margin-right: 10px;"></i>Admin Control Center</h1>
+        <p id="adminGreeting">
+          <i class="fas fa-circle"></i>
+          Loading dashboard...
+        </p>
+      </div>
+      <div class="header-actions">
+        <button class="btn btn-outline" onclick="window.location.href='../index.html'">
+          <i class="fas fa-home"></i>
+          Home
+        </button>
+        <button class="btn btn-primary" onclick="Auth.logout()">
+          <i class="fas fa-sign-out-alt"></i>
+          Logout
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Grid -->
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-icon blue">
+          <i class="fas fa-users"></i>
+        </div>
+        <div class="stat-info">
+          <h3>Total Users</h3>
+          <div class="stat-value" id="totalUsersStat">-</div>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon purple">
+          <i class="fas fa-user-tie"></i>
+        </div>
+        <div class="stat-info">
+          <h3>Admins</h3>
+          <div class="stat-value" id="adminCountStat">-</div>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon green">
+          <i class="fas fa-user-plus"></i>
+        </div>
+        <div class="stat-info">
+          <h3>Recruiters</h3>
+          <div class="stat-value" id="recruiterCountStat">-</div>
+        </div>
+      </div>
+      
+      <div class="stat-card">
+        <div class="stat-icon orange">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+        <div class="stat-info">
+          <h3>Candidates</h3>
+          <div class="stat-value" id="candidateCountStat">-</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content Grid -->
+    <div class="content-grid">
+      <!-- Users Card -->
+      <div class="users-card">
+        <div class="card-header">
+          <h2>
+            <i class="fas fa-users"></i>
+            User Directory
+          </h2>
+          <span class="badge" id="userCountBadge">0 total</span>
+        </div>
+
+        <div class="search-box">
+          <input type="text" id="searchInput" placeholder="🔍 Search users by name, email or role...">
+          <button id="searchBtn">
+            <i class="fas fa-search"></i>
+            Search
+          </button>
+        </div>
+
+        <div class="user-list" id="adminUsers">
+          <div class="loading">
+            <i class="fas fa-spinner"></i>
+            Loading users...
+          </div>
+        </div>
+      </div>
+
+      <!-- Activity Card -->
+      <div class="activity-card">
+        <div class="card-header">
+          <h2>
+            <i class="fas fa-chart-line"></i>
+            System Activity
+          </h2>
+          <span class="badge">Live</span>
+        </div>
+
+        <div id="adminActivity">
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-user-plus"></i>
+            </div>
+            <div class="activity-details">
+              <h4>New user registered</h4>
+              <p>Candidate account created</p>
+              <span class="activity-time">Just now</span>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="activity-details">
+              <h4>Job posted</h4>
+              <p>Senior Developer position</p>
+              <span class="activity-time">5 minutes ago</span>
+            </div>
+          </div>
+
+          <div class="activity-item">
+            <div class="activity-icon">
+              <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="activity-details">
+              <h4>Application reviewed</h4>
+              <p>5 applications processed</p>
+              <span class="activity-time">15 minutes ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JS files -->
+  <script src="../js/api.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/user.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("🚀 Admin dashboard initializing...");
+      
+      // Elements
+      var greetingEl = document.getElementById("adminGreeting");
+      var usersEl = document.getElementById("adminUsers");
+      var totalUsersStat = document.getElementById("totalUsersStat");
+      var adminCountStat = document.getElementById("adminCountStat");
+      var recruiterCountStat = document.getElementById("recruiterCountStat");
+      var candidateCountStat = document.getElementById("candidateCountStat");
+      var userCountBadge = document.getElementById("userCountBadge");
+      var searchInput = document.getElementById("searchInput");
+      var searchBtn = document.getElementById("searchBtn");
+
+      // Auth check
+      var token = api.getToken();
+      var role = api.getRole();
+      var email = api.getEmail();
+      
+      if (!token || role !== 'ADMIN') {
+        window.location.href = "../pages/loginPage.html";
+        return;
+      }
+
+      // Update greeting
+      if (greetingEl) {
+        var name = email || 'Admin';
+        greetingEl.innerHTML = `<i class="fas fa-circle"></i>Welcome back, ${name}! You have full access to manage the ATS.`;
+      }
+
+      // Load users
+      function loadUsers(searchTerm = '') {
+        if (typeof UserApi === "undefined" || !UserApi.listAll) {
+          usersEl.innerHTML = '<div class="error-box"><i class="fas fa-exclamation-circle"></i> UserApi not available</div>';
+          return;
+        }
+
+        usersEl.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i> Loading users...</div>';
+
+        UserApi.listAll()
+          .then(function(users) {
+            if (!users || users.length === 0) {
+              usersEl.innerHTML = '<div class="error-box"><i class="fas fa-info-circle"></i> No users found</div>';
+              return;
+            }
+
+            // Filter users if search term exists
+            var filteredUsers = users;
+            if (searchTerm) {
+              searchTerm = searchTerm.toLowerCase();
+              filteredUsers = users.filter(function(user) {
+                return (user.fullName || '').toLowerCase().includes(searchTerm) ||
+                       (user.email || '').toLowerCase().includes(searchTerm) ||
+                       (user.role || '').toLowerCase().includes(searchTerm);
+              });
+            }
+
+            // Update stats
+            var adminCount = 0, recruiterCount = 0, candidateCount = 0;
+            filteredUsers.forEach(function(user) {
+              var userRole = (user.role || '').toUpperCase();
+              if (userRole === 'ADMIN') adminCount++;
+              else if (userRole === 'RECRUITER') recruiterCount++;
+              else if (userRole === 'CANDIDATE') candidateCount++;
+            });
+
+            totalUsersStat.textContent = filteredUsers.length;
+            adminCountStat.textContent = adminCount;
+            recruiterCountStat.textContent = recruiterCount;
+            candidateCountStat.textContent = candidateCount;
+            userCountBadge.textContent = filteredUsers.length + ' total';
+
+            // Build user list
+            var userListHTML = '';
+            filteredUsers.forEach(function(user) {
+              var name = user.fullName || user.name || 'No Name';
+              var userEmail = user.email || 'No Email';
+              var userRole = (user.role || 'UNKNOWN').toUpperCase();
+              
+              // Get initials for avatar
+              var initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() || 'U';
+              
+              var roleClass = '';
+              if (userRole === 'ADMIN') roleClass = 'admin';
+              else if (userRole === 'RECRUITER') roleClass = 'recruiter';
+              else if (userRole === 'CANDIDATE') roleClass = 'candidate';
+              
+              userListHTML += `
+                <div class="user-item">
+                  <div class="user-avatar">${initials}</div>
+                  <div class="user-info">
+                    <h4>${name}</h4>
+                    <div class="user-email">
+                      <i class="fas fa-envelope"></i>
+                      ${userEmail}
+                    </div>
+                    <span class="role-badge ${roleClass}">${userRole}</span>
+                  </div>
+                  <div class="user-actions">
+                    <button title="Edit user"><i class="fas fa-edit"></i></button>
+                    <button title="View details"><i class="fas fa-eye"></i></button>
+                    <button title="More options"><i class="fas fa-ellipsis-v"></i></button>
+                  </div>
+                </div>
+              `;
+            });
+
+            usersEl.innerHTML = userListHTML || '<div class="error-box">No users match your search</div>';
+          })
+          .catch(function(err) {
+            console.error("Failed to load users:", err);
+            usersEl.innerHTML = '<div class="error-box"><i class="fas fa-exclamation-triangle"></i> Failed to load users. Please try again.</div>';
+          });
+      }
+
+      // Initial load
+      loadUsers();
+
+      // Search functionality
+      function handleSearch() {
+        loadUsers(searchInput.value);
+      }
+
+      searchBtn.addEventListener('click', handleSearch);
+      searchInput.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') handleSearch();
+      });
+
+      // Load user profile for greeting
+      if (typeof UserApi !== "undefined" && UserApi.me) {
+        UserApi.me()
+          .then(function(user) {
+            if (greetingEl && user && user.fullName) {
+              greetingEl.innerHTML = `<i class="fas fa-circle"></i>Welcome back, ${user.fullName}! You have full access to manage the ATS.`;
+            }
+          })
+          .catch(function() {});
+      }
+    });
+  </script>
+</body>
+</html>

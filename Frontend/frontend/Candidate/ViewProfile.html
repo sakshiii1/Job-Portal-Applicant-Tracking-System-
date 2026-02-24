@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>My Profile</title>
+<link rel="stylesheet" href="MyApplication.css">
+</head>
+
+<body>
+<div class="container">
+
+    <aside class="sidebar">
+        <h2 class="logo">JobPortal</h2>
+        <ul>
+            <li><a href="candidate.html">Dashboard</a></li>
+            <li><a href="MyApplications.html">My Applications</a></li>
+            <li><a href="Jobs.html">Saved Jobs</a></li>
+            <li class="active">Profile</li>
+            <li><a href="settings.html">Settings</a></li>
+        </ul>
+    </aside>
+
+    <main class="main">
+        <h1>My Profile</h1>
+
+        <div class="profile-card">
+            <img src="https://i.pravatar.cc/100">
+            <h3>John Doe</h3>
+            <p>Email: john@gmail.com</p>
+            <p>Role: Backend Developer</p>
+            <button onclick="editProfile()">Edit Profile</button>
+        </div>
+    </main>
+
+</div>
+<script src="ViewProfile.js"></script>
+</body>
+</html>

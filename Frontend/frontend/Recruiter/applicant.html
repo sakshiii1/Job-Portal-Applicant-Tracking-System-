@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Applicants | Recruiter ATS</title>
+    <link rel="stylesheet" href="applicant.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">ATS Recruiter</h2>
+        <ul>
+            <li><a href="recruiterdashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="post-job.html"><i class="fa fa-briefcase"></i> Post Job</a></li>
+            <li class="active"><i class="fa fa-users"></i> Applicants</li>
+            <li><a href="applications.html"><i class="fa fa-chart-line"></i> Applications</a></li>
+            <li><a href="settings.html"><i class="fa fa-chart-line"></i> Settings</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>Applicants</h1>
+            <span id="date"></span>
+        </header>
+
+        <section class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Job Title</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="applicantTable">
+                    <tr>
+                        <td>Priya Sharma</td>
+                        <td>priya@gmail.com</td>
+                        <td>Java Developer</td>
+                        <td class="status pending">Pending</td>
+                        <td>
+                            <button class="shortlist">Shortlist</button>
+                            <button class="reject">Reject</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Rahul Verma</td>
+                        <td>rahul@gmail.com</td>
+                        <td>Frontend Developer</td>
+                        <td class="status pending">Pending</td>
+                        <td>
+                            <button class="shortlist">Shortlist</button>
+                            <button class="reject">Reject</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</div>
+
+<script src="applicant.js"></script>
+</body>
+</html>

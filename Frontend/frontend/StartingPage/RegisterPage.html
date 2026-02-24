@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register · JobTrack ATS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="RegisterPage.css">
+  <script src="../services/api.js"></script>
+  <script src="register.js"></script>
+
+</head>
+<body data-page="register">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">JT</div>
+        <div>
+          <div class="brand-text-main">JobTrack ATS</div>
+          <div class="brand-text-sub">Create your account</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Secure registration flows</span>
+        </div>
+        <span id="navRole" class="nav-role" style="display:none;"></span>
+        <div id="navLinks" class="nav-links"></div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="layout">
+        <div class="left-column">
+          <section class="views-card">
+            <div class="views-tabs">
+              <button class="view-tab active" data-view-tab="register-candidate">Candidate</button>
+              <button class="view-tab" data-view-tab="register-recruiter">Recruiter</button>
+            </div>
+            <div class="views-body">
+              <div id="view-register-candidate" class="view active">
+                <div class="helper-text">
+                  Candidate accounts can browse jobs and apply with one click.
+                </div>
+                <form id="candidateRegisterForm" class="form">
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Full name</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="candidateName" class="input" type="text" autocomplete="name" />
+                  </div>
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Email</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="candidateEmail" class="input" type="email" autocomplete="email" />
+                  </div>
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Password</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="candidatePassword" class="input" type="password" autocomplete="new-password" />
+                  </div>
+                  <div class="error-text" id="candidateRegisterError"></div>
+                  <div class="success-text" id="candidateRegisterSuccess"></div>
+                  <div class="form-actions">
+                    <button id="candidateRegisterSubmit" type="submit" class="btn primary">Create candidate account</button>
+                  </div>
+                </form>
+              </div>
+              <div id="view-register-recruiter" class="view">
+                <div class="helper-text">
+                  Recruiter accounts can post jobs and manage applicants.
+                </div>
+                <form id="recruiterRegisterForm" class="form">
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Full name</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="recruiterName" class="input" type="text" autocomplete="name" />
+                  </div>
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Email</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="recruiterEmail" class="input" type="email" autocomplete="email" />
+                  </div>
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Password</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="recruiterPassword" class="input" type="password" autocomplete="new-password" />
+                  </div>
+                  <div class="error-text" id="recruiterRegisterError"></div>
+                  <div class="success-text" id="recruiterRegisterSuccess"></div>
+                  <div class="form-actions">
+                    <button id="recruiterRegisterSubmit" type="submit" class="btn primary">Create recruiter account</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div class="helper-text" style="margin-top:10px;">
+              Already registered? <a href="loginPage.html">Go to login</a>
+            </div>
+          </section>
+        </div>
+        <div class="right-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Platform highlights</div>
+            </div>
+            <ul class="feature-list">
+              <li>JWT-protected endpoints for all actions</li>
+              <li>Role-based dashboards for admin, recruiter, and candidate</li>
+              <li>Single source of truth for jobs and applications</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../../app.js"></script>
+</body>
+</html>

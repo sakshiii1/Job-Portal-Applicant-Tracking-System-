@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My profile · Recruiter · JobTrack ATS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="Recruiter.css">
+</head>
+<body data-page="recruiter-profile">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">JT</div>
+        <div>
+          <div class="brand-text-main">Recruiter profile</div>
+          <div class="brand-text-sub">Manage your company presence</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span id="navRole" class="nav-role" style="display:none;"></span>
+        <div id="navLinks" class="nav-links"></div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Profile</div>
+        </div>
+        <div id="recruiterProfile" class="helper-text">
+          Wire this view to a recruiter profile endpoint similar to the candidate profile.
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../../app.js"></script>
+  <script src="../services/api.js"></script>
+  <script src="MyProfile.js"></script>
+</body>
+</html>
+

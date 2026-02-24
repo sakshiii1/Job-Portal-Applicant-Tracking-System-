@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard · TalentTrack ATS</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
+    
+    <!-- CSP fix -->
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'unsafe-inline' 'unsafe-eval' data: blob:;">
+</head>
+<body data-require-auth="true" data-role="ADMIN">
+    <div class="dash-shell">
+        <div class="dash-inner">
+            <header class="dash-header">
+                <div>
+                    <div class="dash-title">Admin Control Center</div>
+                    <div class="dash-subtitle" id="adminGreeting">Loading...</div>
+                </div>
+                <div class="dash-actions">
+                    <button class="dash-button" onclick="window.location.href='../index.html'">Home</button>
+                    <button class="dash-button primary" onclick="Auth.logout()">Logout</button>
+                </div>
+            </header>
+            
+            <section class="dash-grid">
+                <article class="dash-card">
+                    <h2 class="dash-card-title">Directory</h2>
+                    <div class="dash-card-body" id="adminUsers">Loading users...</div>
+                </article>
+                
+                <article class="dash-card">
+                    <h2 class="dash-card-title">System Activity</h2>
+                    <div class="dash-card-body" id="adminActivity">Loading stats...</div>
+                </article>
+            </section>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="../js/api.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/user.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Admin dashboard loaded');
+            
+            // Check auth
+            if (!api.getToken() || api.getRole() !== 'ADMIN') {
+                window.location.href = 'loginPage.html';
+                return;
+            }
+            
+            // Load users
+            if (typeof UserApi !== 'undefined' && UserApi.listAll) {
+                UserApi.listAll()
+                    .then(function(users) {
+                        var container = document.getElementById('adminUsers');
+                        container.innerHTML = '';
+                        
+                        users.forEach(function(user) {
+                            var div = document.createElement('div');
+                            div.style.padding = '10px';
+                            div.style.margin = '5px 0';
+                            div.style.background = 'rgba(255,255,255,0.05)';
+                            div.style.borderRadius = '5px';
+                            
+                            div.innerHTML = `
+                                <strong>${user.fullName || 'No Name'}</strong><br>
+                                Email: ${user.email}<br>
+                                Role: ${user.role}
+                            `;
+                            container.appendChild(div);
+                        });
+                    })
+                    .catch(function(err) {
+                        document.getElementById('adminUsers').innerHTML = 'Error loading users';
+                        console.error(err);
+                    });
+            }
+        });
+    </script>
+</body>
+</html>

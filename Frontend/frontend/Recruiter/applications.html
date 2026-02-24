@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Applications | Recruiter ATS</title>
+    <link rel="stylesheet" href="applications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">ATS Recruiter</h2>
+        <ul>
+            <li><a href="recruiterdashboard.html"><i class="fa fa-chart-line"></i> Dashboard</a></li>
+            <li><a href="post-job.html"><i class="fa fa-briefcase"></i> Post Job</a></li>
+            <li><a href="applicants.html"><i class="fa fa-users"></i> Applicants</a></li>
+            <li class="active"><i class="fa fa-file"></i> Applications</li>
+            <li><a href="settings.html"><i class="fa fa-chart-line"></i> Settings</a></li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>Applications</h1>
+            <span id="date"></span>
+        </header>
+
+        <!-- Filter -->
+        <section class="filter-section">
+            <select id="jobFilter">
+                <option value="all">All Jobs</option>
+                <option value="Java Developer">Java Developer</option>
+                <option value="Frontend Developer">Frontend Developer</option>
+                <option value="QA Engineer">QA Engineer</option>
+            </select>
+        </section>
+
+        <!-- Applications Table -->
+        <section class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Applicant Name</th>
+                        <th>Email</th>
+                        <th>Job Title</th>
+                        <th>Applied Date</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="applicationTable">
+                    <tr data-job="Java Developer">
+                        <td>Priya Sharma</td>
+                        <td>priya@gmail.com</td>
+                        <td>Java Developer</td>
+                        <td>12 Feb 2026</td>
+                        <td class="status pending">Pending</td>
+                        <td>
+                            <button class="shortlist">Shortlist</button>
+                            <button class="reject">Reject</button>
+                        </td>
+                    </tr>
+                    <tr data-job="Frontend Developer">
+                        <td>Rahul Verma</td>
+                        <td>rahul@gmail.com</td>
+                        <td>Frontend Developer</td>
+                        <td>13 Feb 2026</td>
+                        <td class="status pending">Pending</td>
+                        <td>
+                            <button class="shortlist">Shortlist</button>
+                            <button class="reject">Reject</button>
+                        </td>
+                    </tr>
+                    <tr data-job="QA Engineer">
+                        <td>Anjali Patil</td>
+                        <td>anjali@gmail.com</td>
+                        <td>QA Engineer</td>
+                        <td>14 Feb 2026</td>
+                        <td class="status pending">Pending</td>
+                        <td>
+                            <button class="shortlist">Shortlist</button>
+                            <button class="reject">Reject</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</div>
+
+<script src="applications.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard | JobTrack ATS</title>
+  <link rel="stylesheet" href="admin.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body data-require-auth="true" data-role="ADMIN">
+
+<div class="dashboard">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h2 class="logo">JT Admin</h2>
+    <ul>
+      <li class="active" onclick="showSection('dashboard',this)">Dashboard</li>
+      <li onclick="showSection('users',this)">Users</li>
+      <li onclick="showSection('jobs',this)">Jobs</li>
+      <li onclick="showSection('applications',this)">Applications</li>
+      <li onclick="showSection('settings',this)">Settings</li>
+      <!-- FIXED LINE -->
+      <li onclick="Auth.logout()">Logout</li>
+    </ul>
+  </aside>
+
+  <!-- Main -->
+  <main class="main">
+    <header class="topbar">
+      <h3>Admin Dashboard</h3>
+      <span class="admin-name">Welcome, Admin</span>
+    </header>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="section active">
+      <div class="cards">
+        <div class="card">👥 Total Users <h2>120</h2></div>
+        <div class="card">💼 Jobs Posted <h2>35</h2></div>
+        <div class="card">📄 Applications <h2>280</h2></div>
+        <div class="card">🏢 Recruiters <h2>18</h2></div>
+      </div>
+    </section>
+
+    <!-- Users -->
+    <section id="users" class="section">
+      <h2>Manage Users</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody id="usersTableBody">
+          <!-- Users will load from backend -->
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Jobs -->
+    <section id="jobs" class="section">
+      <h2>Manage Jobs</h2>
+      <button class="primary" onclick="addCategory()">+ Add Job Category</button>
+      <ul id="categoryList"></ul>
+    </section>
+
+    <!-- Applications -->
+    <section id="applications" class="section">
+      <h2>Applications</h2>
+      <p>Fetched from backend later</p>
+    </section>
+
+    <!-- Settings -->
+    <section id="settings" class="section">
+      <h2>Admin Settings</h2>
+      <input type="password" id="adminPass" placeholder="Change password">
+      <button class="primary" onclick="updateSettings()">Update</button>
+    </section>
+  </main>
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/admin.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My job posts · Recruiter · JobTrack ATS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="Recruiter.css">
+</head>
+<body data-page="recruiter-dashboard">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">JT</div>
+        <div>
+          <div class="brand-text-main">My job posts</div>
+          <div class="brand-text-sub">Review roles you have published</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span id="navRole" class="nav-role" style="display:none;"></span>
+        <div id="navLinks" class="nav-links"></div>
+      </div>
+    </header>
+    <main class="main">
+      <section class="panel">
+        <div class="panel-header">
+          <div class="panel-title">Jobs</div>
+          <span class="tag">GET /jobs</span>
+        </div>
+        <div id="jobsList" class="jobs-list">
+          <div class="empty-state">Jobs will load here.</div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../../app.js"></script>
+  <script src="../services/api.js"></script>
+<script src="Mypost.js"></script>
+</body>
+</html>
+

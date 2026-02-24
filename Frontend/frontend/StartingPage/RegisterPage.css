@@ -1,0 +1,17 @@
+@import url("../../styles.css");
+
+.views-card {
+  margin-top: 24px;
+}
+
+.feature-list {
+  list-style: disc;
+  padding-left: 20px;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.feature-list li + li {
+  margin-top: 4px;
+}
+

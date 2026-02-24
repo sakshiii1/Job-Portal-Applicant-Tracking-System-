@@ -1,0 +1,19 @@
+@import url("../../styles.css");
+
+.views-card {
+  margin-top: 16px;
+}
+
+.hero-title {
+  font-size: 1.75rem;
+}
+
+.helper-text a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.helper-text a:hover {
+  text-decoration: underline;
+}
+

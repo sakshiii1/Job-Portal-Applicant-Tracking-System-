@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Recruiter Dashboard | ATS</title>
+    <link rel="stylesheet" href="recruiterdashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <!-- Profile Section -->
+        <div class="profile">
+    <img id="profilePhoto" src="default-profile.png" alt="Profile">
+    <h4 id="profileName">Recruiter</h4>
+</div>
+
+<script src="recruiter-dashboard.js"></script>
+
+
+        <ul>
+            <li class="active"><i class="fa fa-chart-line"></i> Dashboard</li>
+            <li><a href="post-job.html"><i class="fa fa-briefcase"></i> Post Job</a></li>
+            <li><a href="applicant.html"><i class="fa fa-briefcase"></i> Applicants</a></li>
+            <li><a href="applications.html"><i class="fa fa-chart-line"></i> Applications</a></li>
+            <li><a href="settings.html"><i class="fa fa-chart-line"></i> Settings</a></li>
+            <li id="logout"><i class="fa fa-sign-out-alt"></i> Logout</li>
+        </ul>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+        <header class="header">
+            <h1>Welcome, Recruiter 👋</h1>
+            <span id="date"></span>
+        </header>
+
+        <!-- Cards -->
+        <section class="cards">
+            <div class="card">
+                <h3>Total Jobs</h3>
+                <p>12</p>
+            </div>
+            <div class="card">
+                <h3>Total Applicants</h3>
+                <p>85</p>
+            </div>
+            <div class="card">
+                <h3>Shortlisted</h3>
+                <p>18</p>
+            </div>
+            <div class="card">
+                <h3>Rejected</h3>
+                <p>30</p>
+            </div>
+        </section>
+
+        <!-- Table -->
+        <section class="table-section">
+            <h2>Recent Applications</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Job Role</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Priya Sharma</td>
+                        <td>Java Developer</td>
+                        <td class="status shortlisted">Shortlisted</td>
+                    </tr>
+                    <tr>
+                        <td>Rahul Verma</td>
+                        <td>Frontend Developer</td>
+                        <td class="status pending">Pending</td>
+                    </tr>
+                    <tr>
+                        <td>Anjali Patil</td>
+                        <td>QA Engineer</td>
+                        <td class="status rejected">Rejected</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+    </main>
+</div>
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="recruiterdashboard.js"></script>
+</body>
+</html>

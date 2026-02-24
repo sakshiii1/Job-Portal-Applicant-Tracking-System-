@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Candidate Dashboard</title>
+
+<link rel="stylesheet" href="candidate.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <h2 class="logo">JobPortal</h2>
+
+        <ul>
+            <li class="active"><i class="fa fa-chart-line"></i> Dashboard</li>
+            <li><a href="MyApplications.html"><i class="fa fa-briefcase"></i> My Applications</a></li>
+            <li><a href="Jobs.html"><i class="fa fa-briefcase"></i> Saved Jobs</a></li>
+            <li><a href="ViewProfile.html"><i class="fa fa-chart-line"></i> Profile</a></li>
+            <li><a href="settings.html"><i class="fa fa-chart-line"></i> Settings</a></li>
+            <li id="logout"><i class="fa fa-sign-out-alt"></i> Logout</li>
+        </ul>
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- Header -->
+        <header class="header">
+            <h1 id="greeting">Welcome</h1>
+
+            <div class="profile">
+                <img src="https://i.pravatar.cc/40" alt="">
+                <span>John Doe</span>
+            </div>
+        </header>
+
+
+        <!-- Stats -->
+        <section class="stats">
+
+            <div class="card">
+                <h3>Applications</h3>
+                <p>24</p>
+            </div>
+
+            <div class="card">
+                <h3>Interviews</h3>
+                <p>5</p>
+            </div>
+
+            <div class="card">
+                <h3>Saved Jobs</h3>
+                <p>12</p>
+            </div>
+
+            <div class="card">
+                <h3>Profile Views</h3>
+                <p>48</p>
+            </div>
+
+        </section>
+
+
+        <!-- Recommended Jobs -->
+        <section class="jobs">
+
+            <h2>Recommended Jobs</h2>
+
+            <div class="job-grid">
+
+                <div class="job-card">
+                    <h3>Frontend Developer</h3>
+                    <p>Google</p>
+                    <span>Remote</span>
+                    <button>Apply</button>
+                </div>
+
+                <div class="job-card">
+                    <h3>UI Designer</h3>
+                    <p>Adobe</p>
+                    <span>Hybrid</span>
+                    <button>Apply</button>
+                </div>
+
+                <div class="job-card">
+                    <h3>Backend Developer</h3>
+                    <p>Amazon</p>
+                    <span>Onsite</span>
+                    <button onclick="applyJob(1)">Apply</button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Activity -->
+        <section class="activity">
+            <h2>Recent Activity</h2>
+
+            <ul>
+                <li>Applied for Frontend Developer</li>
+                <li>Saved UI Designer job</li>
+                <li>Interview scheduled with Amazon</li>
+            </ul>
+        </section>
+
+    </main>
+
+</div>
+
+<script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/job.js"></script>
+<script src="candidate.js"></script>
+</body>
+</html>

@@ -1,0 +1,732 @@
+<meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://127.0.0.1:5500">
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TalentTrack · Modern ATS for growing teams</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #030712;
+      color: #f3f4f6;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+  
+    .gradient-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.15) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 50%, rgba(124, 58, 237, 0.15) 0%, transparent 45%),
+                  radial-gradient(circle at 30% 80%, rgba(6, 182, 212, 0.1) 0%, transparent 40%),
+                  #030712;
+      animation: gradientShift 15s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% { opacity: 0.5; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+
+    .home-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(12px);
+      background: rgba(3, 7, 18, 0.8);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .home-header-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .home-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .home-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      font-size: 16px;
+      font-weight: 700;
+      box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
+    }
+
+    .home-logo-text {
+      font-weight: 600;
+      font-size: 18px;
+      background: linear-gradient(135deg, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .home-nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .home-nav-link {
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #d1d5db;
+      text-decoration: none;
+      transition: all 0.3s;
+    }
+
+    .home-nav-link:hover {
+      color: white;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .home-nav-link.primary {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    }
+
+    .home-nav-link.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+    }
+
+    /* Main content */
+    .home-main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    /* Hero section */
+    .home-hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 48px;
+      align-items: center;
+      padding: 40px 0 80px;
+    }
+
+    .home-hero-content {
+      max-width: 600px;
+    }
+
+    .home-hero-title {
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 24px;
+    }
+
+    .home-hero-subtitle {
+      font-size: 18px;
+      color: #9ca3af;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+
+    .home-hero-actions {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .home-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 28px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 500;
+      text-decoration: none;
+      transition: all 0.3s;
+      gap: 8px;
+    }
+
+    .home-button.primary {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      color: white;
+      box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    }
+
+    .home-button.primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(79, 70, 229, 0.4);
+    }
+
+    .home-button.ghost {
+      background: rgba(255, 255, 255, 0.05);
+      color: #e5e7eb;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .home-button.ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .home-hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .home-pill {
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #d1d5db;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .home-pill i {
+      color: #4f46e5;
+      font-size: 12px;
+    }
+
+    /* Glass card */
+    .home-hero-panel {
+      position: relative;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .home-glass-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    }
+
+    .home-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .home-card-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .home-card-status {
+      font-size: 12px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.1);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .home-card-status i {
+      font-size: 8px;
+    }
+
+    .home-card-metrics {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .home-metric {
+      text-align: center;
+      padding: 12px;
+      background: rgba(0, 0, 0, 0.2);
+      border-radius: 16px;
+    }
+
+    .home-metric-label {
+      font-size: 12px;
+      color: #9ca3af;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .home-metric-value {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .home-metric-value.accent {
+      color: #4f46e5;
+    }
+
+    .home-card-footer {
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      font-size: 13px;
+      color: #6b7280;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .home-card-footer i {
+      color: #4f46e5;
+    }
+
+    /* Roles section */
+    .home-roles {
+      padding: 80px 0;
+    }
+
+    .home-section-title {
+      font-size: 32px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 48px;
+      background: linear-gradient(135deg, #fff, #9ca3af);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .home-roles-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .home-role-card {
+      background: rgba(17, 24, 39, 0.5);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .home-role-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #4f46e5, #7c3aed);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+
+    .home-role-card:hover {
+      transform: translateY(-5px);
+      background: rgba(17, 24, 39, 0.8);
+      border-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .home-role-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .home-role-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 20px;
+      color: white;
+    }
+
+    .home-role-title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .home-role-text {
+      font-size: 14px;
+      color: #9ca3af;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .home-role-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #4f46e5;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: gap 0.3s;
+    }
+
+    .home-role-link:hover {
+      gap: 12px;
+    }
+
+    /* Features section */
+    .home-features {
+      padding: 40px 0;
+    }
+
+    .home-features-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .home-feature-pill {
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 14px;
+      font-weight: 500;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #d1d5db;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+
+    .home-feature-pill:hover {
+      background: rgba(79, 70, 229, 0.1);
+      border-color: rgba(79, 70, 229, 0.3);
+      color: #fff;
+      transform: scale(1.05);
+    }
+
+    .home-feature-pill i {
+      color: #4f46e5;
+    }
+
+    /* Footer */
+    .home-footer {
+      margin-top: 80px;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .home-footer a {
+      color: #9ca3af;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .home-footer a:hover {
+      color: #4f46e5;
+    }
+
+    /* Responsive */
+    @media (max-width: 968px) {
+      .home-hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .home-hero-content {
+        max-width: 100%;
+      }
+
+      .home-hero-actions {
+        justify-content: center;
+      }
+
+      .home-hero-meta {
+        justify-content: center;
+      }
+
+      .home-roles-grid {
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 0 auto;
+      }
+
+      .home-role-card {
+        text-align: center;
+      }
+
+      .home-role-icon {
+        margin: 0 auto 20px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .home-header-inner {
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .home-hero-title {
+        font-size: 40px;
+      }
+
+      .home-hero-actions {
+        flex-direction: column;
+      }
+
+      .home-card-metrics {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="gradient-bg"></div>
+
+  <header class="home-header">
+    <div class="home-header-inner">
+      <div class="home-logo">
+        <span class="home-logo-badge">
+          <i class="fas fa-bolt"></i>
+        </span>
+        <span class="home-logo-text">TalentTrack</span>
+      </div>
+
+      <nav class="home-nav">
+        <a href="#roles" class="home-nav-link">
+          <i class="fas fa-users"></i>
+          Roles
+        </a>
+        <a href="#features" class="home-nav-link">
+          <i class="fas fa-star"></i>
+          Features
+        </a>
+        <a href="#start" class="home-nav-link primary">
+          <i class="fas fa-rocket"></i>
+          Get started
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="home-main">
+    <!-- Hero Section -->
+    <section class="home-hero" id="start">
+      <div class="home-hero-content">
+        <h1 class="home-hero-title">
+          A modern ATS for growing teams
+        </h1>
+        <p class="home-hero-subtitle">
+          Source, evaluate, and hire talent from one elegant workspace. 
+          Built for speed, security, and scale.
+        </p>
+
+        <div class="home-hero-actions">
+          <a href="pages/loginPage.html" class="home-button primary">
+            <i class="fas fa-sign-in-alt"></i>
+            Sign in
+          </a>
+          <a href="pages/registerPage.html" class="home-button ghost">
+            <i class="fas fa-user-plus"></i>
+            Create an account
+          </a>
+        </div>
+
+        <div class="home-hero-meta">
+          <span class="home-pill">
+            <i class="fas fa-check-circle"></i>
+            JWT secured
+          </span>
+          <span class="home-pill">
+            <i class="fas fa-mobile-alt"></i>
+            Responsive
+          </span>
+          <span class="home-pill">
+            <i class="fas fa-bolt"></i>
+            Real-time
+          </span>
+        </div>
+      </div>
+
+      <div class="home-hero-panel">
+        <div class="home-glass-card">
+          <div class="home-card-header">
+            <span class="home-card-title">Today's pipeline</span>
+            <span class="home-card-status">
+              <i class="fas fa-circle"></i>
+              Live
+            </span>
+          </div>
+
+          <div class="home-card-metrics">
+            <div class="home-metric">
+              <span class="home-metric-label">Open roles</span>
+              <span class="home-metric-value">12</span>
+            </div>
+            <div class="home-metric">
+              <span class="home-metric-label">New applicants</span>
+              <span class="home-metric-value accent">48</span>
+            </div>
+            <div class="home-metric">
+              <span class="home-metric-label">Time to hire</span>
+              <span class="home-metric-value">9d</span>
+            </div>
+          </div>
+
+          <div class="home-card-footer">
+            <i class="fas fa-shield-alt"></i>
+            <span>Welcome to NextHire !</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roles Section -->
+    <section class="home-roles" id="roles">
+      <h2 class="home-section-title">Built for every role in hiring</h2>
+
+      <div class="home-roles-grid">
+        <!-- Admin Card -->
+        <div class="home-role-card">
+          <div class="home-role-icon">
+            <i class="fas fa-crown"></i>
+          </div>
+          <h3 class="home-role-title">Admin</h3>
+          <p class="home-role-text">
+            Configure users, control access, monitor system health, 
+            and keep workflows secure with granular permissions.
+          </p>
+          <a href="pages/registerPage.html?role=ADMIN" class="home-role-link">
+            Create admin access
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Recruiter Card -->
+        <div class="home-role-card">
+          <div class="home-role-icon">
+            <i class="fas fa-briefcase"></i>
+          </div>
+          <h3 class="home-role-title">Recruiter</h3>
+          <p class="home-role-text">
+            Post roles, review candidates, schedule interviews, 
+            and collaborate with hiring teams seamlessly.
+          </p>
+          <a href="pages/registerPage.html?role=RECRUITER" class="home-role-link">
+            Sign up as recruiter
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <!-- Candidate Card -->
+        <div class="home-role-card">
+          <div class="home-role-icon">
+            <i class="fas fa-user-graduate"></i>
+          </div>
+          <h3 class="home-role-title">Candidate</h3>
+          <p class="home-role-text">
+            Discover roles, track applications, receive updates, 
+            and manage your job search journey in real time.
+          </p>
+          <a href="pages/registerPage.html?role=CANDIDATE" class="home-role-link">
+            Sign up as candidate
+            <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="home-features" id="features">
+      <h2 class="home-section-title">Designed to feel fast and effortless</h2>
+
+      <div class="home-features-row">
+        <div class="home-feature-pill">
+          <i class="fas fa-lock"></i>
+          JWT-secured API
+        </div>
+        <div class="home-feature-pill">
+          <i class="fas fa-mobile-alt"></i>
+          Responsive dashboards
+        </div>
+        <div class="home-feature-pill">
+          <i class="fas fa-font"></i>
+          Clean typography
+        </div>
+        <div class="home-feature-pill">
+          <i class="fas fa-moon"></i>
+          Modern dark UI
+        </div>
+        <div class="home-feature-pill">
+          <i class="fas fa-chart-line"></i>
+          Real-time analytics
+        </div>
+        <div class="home-feature-pill">
+          <i class="fas fa-bolt"></i>
+          Lightning fast
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="home-footer">
+      <p>
+        © 2026 TalentTrack ATS · Built with 
+        <i class="fas fa-heart" style="color: #ef4444;"></i> 
+        for modern teams · 
+        <a href="#">Privacy</a> · 
+        <a href="#">Terms</a>
+      </p>
+    </footer>
+  </main>
+</body>
+</html>

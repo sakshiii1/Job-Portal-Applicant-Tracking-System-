@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login · JobTrack ATS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="loginPage.css">
+  <script src="../services/api.js"></script>
+<script src="login.js"></script>
+</head>
+<body data-page="login">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">JT</div>
+        <div>
+          <div class="brand-text-main">JobTrack ATS</div>
+          <div class="brand-text-sub">Modern hiring workspace</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Spring Boot API · JWT secured</span>
+        </div>
+        <span id="navRole" class="nav-role" style="display:none;"></span>
+        <div id="navLinks" class="nav-links"></div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="layout">
+        <div class="left-column">
+          <section class="hero-card">
+            <div class="hero-header">
+              <div>
+                <div class="hero-title">Sign in to manage your hiring</div>
+                <div class="hero-badge-row">
+                  <span class="hero-pill">Admin · Recruiter · Candidate</span>
+                  <span class="hero-pill">Unified job board and ATS</span>
+                </div>
+              </div>
+            </div>
+            <div class="hero-summary-grid">
+              <div class="hero-summary-card">
+                <div class="hero-summary-label">
+                  <span>Open jobs</span>
+                  <span class="hero-summary-sub">live</span>
+                </div>
+                <div class="hero-summary-value" id="summaryOpenJobs">0</div>
+                <div class="hero-summary-sub">Pulled from recruiter postings</div>
+              </div>
+              <div class="hero-summary-card">
+                <div class="hero-summary-label">
+                  <span>Active applications</span>
+                  <span class="hero-summary-sub">all roles</span>
+                </div>
+                <div class="hero-summary-value" id="summaryApplications">0</div>
+                <div class="hero-summary-sub">Statuses synced from workflow</div>
+              </div>
+              <div class="hero-summary-card">
+                <div class="hero-summary-label">
+                  <span>Time to fill</span>
+                  <span class="hero-summary-sub">days</span>
+                </div>
+                <div class="hero-summary-value" id="summaryTimeToFill">0</div>
+                <div class="hero-summary-sub">From admin analytics</div>
+              </div>
+            </div>
+          </section>
+          <section class="views-card">
+            <div class="views-tabs">
+              <button class="view-tab active" data-view-tab="login">Login</button>
+              <button class="view-tab" data-view-tab="register-candidate">Candidate signup</button>
+              <button class="view-tab" data-view-tab="register-recruiter">Recruiter signup</button>
+            </div>
+            <div class="views-body">
+              <div id="view-login" class="view active">
+                <div class="helper-text">
+                  Log in with your registered email and password. JWT token will be stored securely and attached to protected API requests.
+                </div>
+                <form id="loginForm" class="form">
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Email</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="loginEmail" class="input" type="email" autocomplete="email" />
+                  </div>
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Password</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <input id="loginPassword" class="input" type="password" autocomplete="current-password" />
+                  </div>
+                  <div class="field">
+                    <div class="field-label">
+                      <span>Role</span>
+                      <span class="field-required">Required</span>
+                    </div>
+                    <select id="loginRole" class="select">
+                      <option value="">Select role</option>
+                      <option value="CANDIDATE">Candidate</option>
+                      <option value="RECRUITER">Recruiter</option>
+                      <option value="ADMIN">Admin</option>
+                    </select>
+                  </div>
+                  <div class="error-text" id="loginError"></div>
+                  <div class="success-text" id="loginSuccess"></div>
+                  <div class="form-actions">
+                    <button id="loginSubmit" type="submit" class="btn primary">Sign in</button>
+                  </div>
+                </form>
+                <div class="helper-text" style="margin-top:6px;">
+                  <a href="ForgetPassword.html">Forgot password?</a>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="right-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Live jobs</div>
+              <span class="tag">GET /jobs</span>
+            </div>
+            <div id="jobsList" class="jobs-list">
+              <div class="empty-state">Jobs will appear here after loading from backend.</div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast">
+      <div id="toastMessage" class="toast-message"></div>
+      <button id="toastClose" class="toast-close" type="button">Dismiss</button>
+    </div>
+  </div>
+  <script src="../js/api.js"></script>
+<script src="../js/auth.js"></script>   <!-- if you have Auth helper -->
+<script src="login.js"></script>
+</body>
+</html>

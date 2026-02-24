@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recruiter dashboard · JobTrack ATS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="Recruiter.css">
+</head>
+<body data-page="recruiter-dashboard">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">JT</div>
+        <div>
+          <div class="brand-text-main">Recruiter workspace</div>
+          <div class="brand-text-sub">Post jobs and review candidates</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="pill">
+          <span class="pill-dot"></span>
+          <span>Recruiter</span>
+        </div>
+        <span id="navRole" class="nav-role" style="display:none;"></span>
+        <div id="navLinks" class="nav-links"></div>
+      </div>
+    </header>
+    <main class="main recruiter-layout">
+      <div class="layout">
+        <div class="left-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Post a new job</div>
+              <span class="tag">POST /recruiter/jobs</span>
+            </div>
+            <form id="postJobForm" class="form new-job-form">
+              <div class="field">
+                <div class="field-label">
+                  <span>Job title</span>
+                  <span class="field-required">Required</span>
+                </div>
+                <input id="jobTitle" class="input" type="text" />
+              </div>
+              <div class="field">
+                <div class="field-label">
+                  <span>Location</span>
+                </div>
+                <input id="jobLocation" class="input" type="text" />
+              </div>
+              <div class="field">
+                <div class="field-label">
+                  <span>Description</span>
+                  <span class="field-required">Required</span>
+                </div>
+                <textarea id="jobDescription" class="input" rows="4"></textarea>
+              </div>
+              <div class="error-text" id="postJobError"></div>
+              <div class="success-text" id="postJobSuccess"></div>
+              <div class="form-actions">
+                <button id="postJobSubmit" type="submit" class="btn primary">Publish job</button>
+              </div>
+            </form>
+          </section>
+        </div>
+        <div class="right-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">My jobs</div>
+              <span class="tag">GET /jobs</span>
+            </div>
+            <div id="jobsList" class="jobs-list">
+              <div class="empty-state">Jobs will appear here after loading.</div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+    <div id="toast" class="toast">
+      <div id="toastMessage" class="toast-message"></div>
+      <button id="toastClose" class="toast-close" type="button">Dismiss</button>
+    </div>
+  </div>
+  <script src="../../app.js"></script>
+</body>
+</html>
+

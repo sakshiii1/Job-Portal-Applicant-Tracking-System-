@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Apply for jobs · Candidate · JobTrack ATS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../styles.css">
+  <link rel="stylesheet" href="candidate.css">
+</head>
+<body data-page="candidate-dashboard">
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">JT</div>
+        <div>
+          <div class="brand-text-main">Apply to jobs</div>
+          <div class="brand-text-sub">Choose a job and send your profile</div>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <span id="navRole" class="nav-role" style="display:none;"></span>
+        <div id="navLinks" class="nav-links"></div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="layout">
+        <div class="left-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Jobs</div>
+              <span class="tag">GET /jobs</span>
+            </div>
+            <div id="jobsList" class="jobs-list">
+              <div class="empty-state">Jobs will load here.</div>
+            </div>
+          </section>
+        </div>
+        <div class="right-column">
+          <section class="panel">
+            <div class="panel-header">
+              <div class="panel-title">Apply</div>
+              <span class="tag">POST /applications</span>
+            </div>
+            <div id="jobDetails" class="helper-text">
+              Select a job to see details and apply.
+            </div>
+            <form id="applyJobForm" class="form" style="margin-top:10px;">
+              <input id="applyJobId" type="hidden" />
+              <div class="field">
+                <div class="field-label">
+                  <span>Application note</span>
+                </div>
+                <textarea id="applicationNote" class="input" rows="3"></textarea>
+              </div>
+              <div class="error-text" id="applyJobError"></div>
+              <div class="success-text" id="applyJobSuccess"></div>
+              <div class="form-actions">
+                <button id="applyJobSubmit" type="submit" class="btn primary">Submit</button>
+              </div>
+            </form>
+          </section>
+        </div>
+      </div>
+    </main>
+  </div>
+  <script src="../../app.js"></script>
+</body>
+</html>
+
